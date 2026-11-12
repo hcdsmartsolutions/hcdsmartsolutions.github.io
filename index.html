@@ -378,6 +378,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-nombre" style="font-size: 14px; font-weight: 600; color: #0F1B2D">Nombre</label><input id="c-nombre" name="nombre" type="text" required autocomplete="name" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0"></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-empresa" style="font-size: 14px; font-weight: 600; color: #0F1B2D">Empresa</label><input id="c-empresa" name="empresa" type="text" autocomplete="organization" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0"></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-email" style="font-size: 14px; font-weight: 600; color: #0F1B2D">Email</label><input id="c-email" name="email" type="email" autocomplete="email" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="c-cel" style="font-size: 14px; font-weight: 600; color: #0F1B2D">Celular</label><input id="c-cel" name="celular" type="tel" required autocomplete="tel" inputmode="tel" placeholder="Ej: 11 1234-5678" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0"></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-msg" style="font-size: 14px; font-weight: 600; color: #0F1B2D">¿Qué te gustaría resolver?</label><textarea id="c-msg" name="mensaje" required rows="4" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0; resize: vertical"></textarea></div>
 <button type="submit" style="font: inherit; font-size: 16px; font-weight: 700; padding: 15px 24px; background: #0F1B2D; color: #FFFFFF; border: 0; cursor: pointer; align-self: flex-start">Enviar por WhatsApp</button>
 </form>
@@ -398,7 +399,8 @@ document.getElementById('form-contacto').addEventListener('submit', function (e)
   var f = e.target;
   var texto = 'Hola HCD! Soy ' + f.nombre.value +
     (f.empresa.value ? ' de ' + f.empresa.value : '') +
-    (f.email.value ? ' (' + f.email.value + ')' : '') +
+    '. Mi celular: ' + f.celular.value +
+    (f.email.value ? ' · Email: ' + f.email.value : '') +
     '. ' + f.mensaje.value;
   window.open('https://wa.me/5491166012321?text=' + encodeURIComponent(texto), '_blank', 'noopener');
 });
