@@ -1,41 +1,24 @@
-# HCD Smart Solutions — Sitio web
+# HCD Smart Solutions
 
-Sitio institucional de **HCD Smart Solutions**: tecnología a medida para pymes (sistemas de gestión, CRM, tiendas en Tiendanube, automatizaciones y agentes de IA).
+**Tecnología a medida para pymes.** Sistemas, e-commerce, automatización e IA hechos a la medida de tu negocio.
 
-Es un sitio estático (HTML + CSS, sin dependencias ni build).
+🌐 **[hcdsmartsolutions.github.io](https://hcdsmartsolutions.github.io)**
 
-## Estructura
+## Qué hacemos
 
-```
-index.html                     Página completa
-img/octopus-panel-carga.jpg    Pantalla de ejemplo: panel de carga
-img/octopus-base-datos.jpg     Pantalla de ejemplo: base de datos única
-img/octopus-estadisticas.jpg   Pantalla de ejemplo: panel de estadísticas
-img/<nombre>.jpg               Fotos del equipo
-```
+- **Tiendas online en Tiendanube:** diseño, configuración y puesta en marcha.
+- **Automatizaciones:** menos tareas repetitivas, más tiempo para tu negocio.
+- **Agentes de IA:** atención y respuestas automáticas para tus clientes.
+- **Sistemas de gestión:** herramientas a medida para ordenar tu operación.
 
-## Publicar con GitHub Pages
+Lo ves funcionando desde la primera demo.
 
-1. Crear un repositorio nuevo en GitHub (por ejemplo `hcd-web`).
-2. Subir estos archivos a la raíz del repo (arrastrándolos en *Add file › Upload files*, o con git):
-   ```bash
-   git init
-   git add .
-   git commit -m "Sitio HCD Smart Solutions"
-   git branch -M main
-   git remote add origin https://github.com/USUARIO/hcd-web.git
-   git push -u origin main
-   ```
-3. En el repo: *Settings › Pages › Build and deployment › Source: Deploy from a branch*, rama `main`, carpeta `/ (root)`.
-4. En unos minutos queda online en `https://USUARIO.github.io/hcd-web/`.
+## Contacto
 
-Para usar un dominio propio (ej. `hcdsmart.com.ar`), cargarlo en *Settings › Pages › Custom domain* y apuntar el DNS a GitHub.
+- 💬 WhatsApp: [11 6601-2321](https://wa.me/5491166012321)
+- ✉️ Email: [hcdsmartsolutions@gmail.com](mailto:hcdsmartsolutions@gmail.com)
+- 📍 Buenos Aires, Argentina
 
-## Pendientes antes de publicar
+---
 
-- El formulario de contacto abre WhatsApp (11 6601-2321) con el mensaje armado; no necesita servidor.
-
-## Personalizar
-
-- Color de acento: cambiar `--accent` en el `<style>` del `<head>` de `index.html`.
-- Las pantallas de Octopus son ilustrativas, con datos de ejemplo.
+© 2026 HCD Smart Solutions
