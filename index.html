@@ -548,6 +548,15 @@ function mostrarEstado(el, ok, html) {
   el.hidden = false;
 }
 
+// Validación del celular: solo números y símbolos telefónicos, entre 8 y 15 dígitos
+var campoCel = document.getElementById('c-cel');
+campoCel.addEventListener('input', function () {
+  var v = campoCel.value;
+  var digitos = v.replace(/\D/g, '').length;
+  var valido = !v || (/^[0-9+()\s.\-]+$/.test(v) && digitos >= 8 && digitos <= 15);
+  campoCel.setCustomValidity(valido ? '' : 'Ingresá un celular válido, solo con números. Ej: 11 1234-5678');
+});
+
 // Clics en cualquier link de WhatsApp (burbuja, footer, etc.)
 document.addEventListener('click', function (e) {
   var link = e.target.closest && e.target.closest('a[href*="wa.me"]');
