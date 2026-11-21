@@ -30,8 +30,17 @@ a{color:#0B6B4F}a:hover{color:#074A37}
 *{box-sizing:border-box}
 img{max-width:100%}
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-#wa-burbuja{position:fixed;right:20px;bottom:20px;z-index:50;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(15,27,45,.3);transition:transform .15s ease}
-#wa-burbuja:hover{transform:scale(1.07)}
+#wa-burbuja{position:fixed;right:24px;bottom:24px;z-index:50;width:68px;height:68px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(15,27,45,.28);transition:transform .2s ease,box-shadow .2s ease;animation:wa-entrada .5s cubic-bezier(.34,1.56,.64,1) .8s backwards}
+#wa-burbuja::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;z-index:-1;animation:wa-pulso 3s ease-out 2s infinite}
+#wa-burbuja:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 12px 28px rgba(15,27,45,.35)}
+@media (hover:hover){
+#wa-burbuja::after{content:"Escribinos por WhatsApp";position:absolute;right:calc(100% + 14px);top:50%;transform:translateY(-50%) translateX(6px);background:#0F1B2D;color:#FFFFFF;font:600 14px/1 Inter,system-ui,sans-serif;white-space:nowrap;padding:10px 14px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+#wa-burbuja:hover::after,#wa-burbuja:focus-visible::after{opacity:1;transform:translateY(-50%) translateX(0)}
+}
+@keyframes wa-pulso{0%{transform:scale(1);opacity:.5}70%,100%{transform:scale(1.55);opacity:0}}
+@keyframes wa-entrada{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+@media (max-width:600px){#wa-burbuja{right:16px;bottom:16px;width:60px;height:60px}}
+@media (prefers-reduced-motion:reduce){#wa-burbuja,#wa-burbuja::before{animation:none}}
 button[disabled]{cursor:wait}
 </style>
 </head>
@@ -461,7 +470,7 @@ button[disabled]{cursor:wait}
 <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 8px; font-size: 17px">
 <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #B9CFC5"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A5763">Email</span><a href="mailto:hcdsmartsolutions@gmail.com" style="font-weight: 600; color: #0F1B2D">hcdsmartsolutions@gmail.com</a></div>
 <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #B9CFC5"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A5763">Dónde estamos</span><span style="font-weight: 600; color: #0F1B2D">Buenos Aires · remoto en todo el país</span></div>
-<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #B9CFC5"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A5763">Contacto</span><span style="font-weight: 600; color: #0F1B2D">Cynthia Henkin · 11 6601-2321</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #B9CFC5"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #4A5763">WhatsApp</span><a href="https://wa.me/5491166012321" data-origen="contacto" target="_blank" rel="noopener" style="font-weight: 600; color: #0F1B2D">11 6601-2321</a></div>
 </div>
 </div>
 <form id="form-contacto" style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; padding: 32px; display: flex; flex-direction: column; gap: 18px">
@@ -489,7 +498,7 @@ button[disabled]{cursor:wait}
 
 </div>
 
-<a id="wa-burbuja" href="https://wa.me/5491166012321?text=Hola%20HCD!%20Quiero%20hacer%20una%20consulta." data-origen="burbuja" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" width="32" height="32" fill="#FFFFFF" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<a id="wa-burbuja" href="https://wa.me/5491166012321?text=Hola%20HCD!%20Quiero%20hacer%20una%20consulta." data-origen="burbuja" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" width="36" height="36" fill="#FFFFFF" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 
 <script>
 // Formulario de contacto: envía los datos a Google Apps Script (email + planilla)
