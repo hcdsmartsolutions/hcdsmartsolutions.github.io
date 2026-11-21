@@ -30,6 +30,9 @@ a{color:#0B6B4F}a:hover{color:#074A37}
 *{box-sizing:border-box}
 img{max-width:100%}
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#wa-burbuja{position:fixed;right:20px;bottom:20px;z-index:50;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(15,27,45,.3);transition:transform .15s ease}
+#wa-burbuja:hover{transform:scale(1.07)}
+button[disabled]{cursor:wait}
 </style>
 </head>
 <body>
@@ -467,7 +470,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-email" style="font-size: 14px; font-weight: 600; color: #0F1B2D">Email</label><input id="c-email" name="email" type="email" autocomplete="email" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0"></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-cel" style="font-size: 14px; font-weight: 600; color: #0F1B2D">Celular</label><input id="c-cel" name="celular" type="tel" required autocomplete="tel" inputmode="tel" placeholder="Ej: 11 1234-5678" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0"></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><label for="c-msg" style="font-size: 14px; font-weight: 600; color: #0F1B2D">¿Qué te gustaría resolver?</label><textarea id="c-msg" name="mensaje" required rows="4" style="font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #A9B4BD; border-radius: 0; resize: vertical"></textarea></div>
-<button type="submit" style="font: inherit; font-size: 16px; font-weight: 700; padding: 15px 24px; background: #0F1B2D; color: #FFFFFF; border: 0; cursor: pointer; align-self: flex-start">Enviar por WhatsApp</button>
+<div aria-hidden="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden"><label for="c-web">No completar este campo</label><input id="c-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<button type="submit" style="font: inherit; font-size: 16px; font-weight: 700; padding: 15px 24px; background: #0F1B2D; color: #FFFFFF; border: 0; cursor: pointer; align-self: flex-start">Enviar consulta</button>
+<p id="form-estado" role="status" aria-live="polite" hidden style="margin: 0; padding: 14px 16px; font-size: 15px; line-height: 1.5"></p>
 </form>
 </div>
 </section>
@@ -477,25 +482,67 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 <div style="display: flex; flex-direction: column; gap: 12px"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 6px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: #0F1B2D">HCD</span><span style="color: #FFFFFF; font-weight: 700">HCD Smart Solutions</span></span><span style="line-height: 1.5">Tecnología a medida para pymes. Sistemas, e-commerce, automatización e IA.</span></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 6px">Servicios</span><a href="#soluciones" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Tiendas en Tiendanube</a><a href="#soluciones" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Automatizaciones</a><a href="#soluciones" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Agentes de IA</a><a href="#soluciones" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Sistemas de gestión</a></div>
 <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 6px">Empresa</span><a href="#como-trabajamos" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Cómo trabajamos</a><a href="#casos" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Casos</a><a href="#nosotros" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Nosotros</a><a href="#faq" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">Preguntas frecuentes</a></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 6px">Contacto</span><a href="mailto:hcdsmartsolutions@gmail.com" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">hcdsmartsolutions@gmail.com</a><a href="https://wa.me/5491166012321" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">WhatsApp · 11 6601-2321</a><span style="padding: 4px 0">Buenos Aires, Argentina</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 6px">Contacto</span><a href="mailto:hcdsmartsolutions@gmail.com" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">hcdsmartsolutions@gmail.com</a><a href="https://wa.me/5491166012321" data-origen="footer" target="_blank" rel="noopener" style="color: #C9D3DC; text-decoration: none; padding: 4px 0">WhatsApp · 11 6601-2321</a><span style="padding: 4px 0">Buenos Aires, Argentina</span></div>
 </div>
 <div style="max-width: 1200px; margin: 0 auto; padding: 20px 24px 32px; border-top: 1px solid #2A3B52; font-size: 13px; color: #A9B6C2">© 2026 HCD Smart Solutions</div>
 </footer>
 
 </div>
+
+<a id="wa-burbuja" href="https://wa.me/5491166012321?text=Hola%20HCD!%20Quiero%20hacer%20una%20consulta." data-origen="burbuja" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp"><svg viewBox="0 0 24 24" width="32" height="32" fill="#FFFFFF" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+
 <script>
+// Formulario de contacto: envía los datos a Google Apps Script (email + planilla)
+var FORM_URL = 'https://script.google.com/macros/s/AKfycbzZylEbMuJo1VHqqV-jPLhOgvj874SfdPVpO7Ng55ktIS7ia2HohrqPPyUhixnVFFsJ/exec';
+window.dataLayer = window.dataLayer || [];
+
 document.getElementById('form-contacto').addEventListener('submit', function (e) {
   e.preventDefault();
   var f = e.target;
-  var texto = 'Hola HCD! Soy ' + f.nombre.value +
-    (f.empresa.value ? ' de ' + f.empresa.value : '') +
-    '. Mi celular: ' + f.celular.value +
-    (f.email.value ? ' · Email: ' + f.email.value : '') +
-    '. ' + f.mensaje.value;
-  // Evento para GTM/GA4 (sin datos personales)
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'contacto_whatsapp', origen: 'formulario' });
-  window.open('https://wa.me/5491166012321?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  var boton = f.querySelector('button[type="submit"]');
+  var estado = document.getElementById('form-estado');
+  var textoBoton = boton.textContent;
+
+  boton.disabled = true;
+  boton.style.opacity = '0.6';
+  boton.textContent = 'Enviando…';
+  estado.hidden = true;
+
+  var cancelar = new AbortController();
+  var limite = setTimeout(function () { cancelar.abort(); }, 20000);
+
+  fetch(FORM_URL, { method: 'POST', body: new URLSearchParams(new FormData(f)), signal: cancelar.signal })
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (!res.ok) throw new Error(res.error || 'Error');
+      f.reset();
+      mostrarEstado(estado, true, '<strong>¡Gracias por escribirnos!</strong> Recibimos tu consulta y te respondemos a la brevedad.');
+      // Evento para GTM/GA4 (sin datos personales)
+      window.dataLayer.push({ event: 'contacto_formulario', origen: 'formulario' });
+    })
+    .catch(function () {
+      mostrarEstado(estado, false, 'No pudimos enviar tu consulta. Probá de nuevo en unos minutos o <a href="https://wa.me/5491166012321" data-origen="error_formulario" target="_blank" rel="noopener" style="color: #8A1C1C; font-weight: 700">escribinos por WhatsApp</a>.');
+    })
+    .finally(function () {
+      clearTimeout(limite);
+      boton.disabled = false;
+      boton.style.opacity = '';
+      boton.textContent = textoBoton;
+    });
+});
+
+function mostrarEstado(el, ok, html) {
+  el.innerHTML = html;
+  el.style.background = ok ? '#E3F5EC' : '#FDECEC';
+  el.style.borderLeft = '4px solid ' + (ok ? '#2BC48A' : '#C0392B');
+  el.style.color = ok ? '#0F1B2D' : '#8A1C1C';
+  el.hidden = false;
+}
+
+// Clics en cualquier link de WhatsApp (burbuja, footer, etc.)
+document.addEventListener('click', function (e) {
+  var link = e.target.closest && e.target.closest('a[href*="wa.me"]');
+  if (link) window.dataLayer.push({ event: 'click_whatsapp', origen: link.getAttribute('data-origen') || 'otro' });
 });
 </script>
 </body>
